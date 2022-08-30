@@ -55,6 +55,7 @@ body {
   line-height: 1.5;
     display: flex;
     flex-direction: column;
+    font-size: 16px;
 }
 
 /* Наследуем шрифты для инпутов и кнопок */
@@ -98,6 +99,9 @@ header .container {
     font-size: 25px;
     text-decoration: none;
 }
+header nav {
+    display: flex;
+}
 header nav ul{
     display: flex;
     align-items: center;
@@ -126,6 +130,7 @@ section {
 }
 section > .container {
     position: relative;
+    overflow-x: auto;
 }
 #error_connection {
     position: absolute;
@@ -168,6 +173,7 @@ table {
 	border: none;
 	margin-bottom: 20px;
 	text-align: center;
+    min-width: 600px;
 }
 table thead th {
 	font-weight: bold;
@@ -185,6 +191,10 @@ table tbody td {
 	font-size: 14px;
 	vertical-align: top;
 }
+table tbody th {
+	font-weight: bold;
+    font-size: 14px;
+}
 table thead tr th:first-child, table tbody tr td:first-child {
 	border-left: none;
 }
@@ -193,10 +203,6 @@ table thead tr th:last-child, table tbody tr td:last-child {
 }
 table tbody tr:nth-child(even){
 	background: #f3f3f3;
-}
-
-.buy, .sell {
-
 }
 
 .arrow {
@@ -245,9 +251,21 @@ footer .container {
     justify-content: space-between;
     align-items: center;
 }
+@media screen and (max-width: 576px) {
+    footer .container {
+        justify-content: center;
+        flex-direction: column;
+    }
+}
 .footer__company {
     display: flex;
     flex-direction: column;
+}
+@media screen and (max-width: 576px) {
+    .footer__company {
+        align-items: center;
+        margin-bottom: 15px;
+    }
 }
 .footer__logo {
     font-weight: 700;
@@ -261,14 +279,30 @@ footer .container {
     font-weight: 400;
     font-size: 15px;
 }
+@media screen and (max-width: 576px) {
+    .footer__copyright {
+        margin-bottom: 15px;
+    }
+}
 .footer__made {
     display: flex;
     flex-direction: column;
     align-items: flex-end;
 }
+@media screen and (max-width: 576px) {
+    .footer__made {
+        flex-direction: row;
+        align-items: center;
+    }
+}
 .footer__made span {
     font-weight: 400;
     font-size: 12px;
+}
+@media screen and (max-width: 576px) {
+    .footer__made span {
+        margin-right: 10px;
+    }
 }
 .footer__author {
     font-weight: 700;
