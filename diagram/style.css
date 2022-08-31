@@ -1,0 +1,152 @@
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-grow: 1;
+    max-width: 1170px;
+    margin: 0 auto;
+}
+@media screen and (max-width: 768px) {
+    section {
+      flex-direction: column;
+    }
+}
+
+svg {
+    width: 600px;
+    height: 600px;
+    overflow: visible;
+    transition: all 1s ease-in-out;
+}
+
+@media screen and (max-width: 768px) {
+    svg {
+      order: -1;
+      width: 300px;
+      height: 300px;
+    }
+}
+
+svg circle {
+  transition: all 1s ease-in-out;
+}
+
+svg circle:nth-child(6) {
+  stroke: #860000;
+  stroke-width: 31.8;
+  stroke-dasharray: 59.44 1000;
+}
+svg circle:nth-child(5) {
+  stroke: #fc7c4e;
+  stroke-width: 25;
+  stroke-dasharray: 17.8 1000;
+  stroke-dashoffset: -59.44;
+}
+svg circle:nth-child(4) {
+  stroke: #123456;
+  stroke-width: 20;
+  stroke-dasharray: 9.36 1000;
+  stroke-dashoffset: -77.24;
+}
+svg circle:nth-child(3) {
+  stroke: #00828d;
+  stroke-width: 15;
+  stroke-dasharray: 7.56 1000;
+  stroke-dashoffset: -86.6;
+}
+svg circle:nth-child(2) {
+  stroke: #00318d;
+  stroke-width: 10;
+  stroke-dasharray: 5.51 1000;
+  stroke-dashoffset: -94.16;
+}
+svg circle:nth-child(1) {
+  stroke: #1d8600;
+  stroke-width: 5;
+  stroke-dasharray: 0.4 1000;
+  stroke-dashoffset: -99.6;
+}
+
+svg circle.hide {
+  stroke-dasharray: 0 1000;
+  stroke-dashoffset: 100;
+}
+
+div {
+    display: flex;
+    align-items: center;
+    justify-items: center;
+    flex-direction: column;
+}
+
+p {
+  font-family: "Verdana", sans-serif;
+  font-size: 18px;
+  line-height: 21px;
+  color: #591d48;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+li {
+  position: relative;
+  margin: 20px 0;
+  padding-left: 30px;
+  font-family: "Verdana", sans-serif;
+  font-size: 16px;
+  line-height: 18px;
+  color: #591d48;
+  cursor: pointer;
+}
+
+li:hover {
+  opacity: 0.8;
+}
+
+li::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 20px;
+  height: 20px;
+  border-radius: 8px;
+}
+
+li:nth-child(1)::before {
+  background-color: #1d8600;
+}
+
+li:nth-child(2)::before {
+  background-color: #00318d;
+}
+
+li:nth-child(3)::before {
+  background-color: #00828d;
+}
+
+li:nth-child(4)::before {
+  background-color: #123456;
+}
+
+li:nth-child(5)::before {
+  background-color: #fc7c4e;
+}
+
+li:nth-child(6)::before {
+  background-color: #860000;
+}
+@media screen and (max-width: 768px) {
+    li {
+        font-size: 12px;
+    }
+}
