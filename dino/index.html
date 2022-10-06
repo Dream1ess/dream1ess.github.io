@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Dino</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <canvas id="canvas" width="1000" height="150"></canvas>
+    <audio id="audio_jump">
+      <source src="audio/dino_jump.mp3" type="audio/mpeg">
+      <source src="audio/dino_jump.ogg" type="audio/ogg">
+    </audio>
+    <audio id="audio_score">
+      <source src="audio/dino_score.mp3" type="audio/mpeg">
+      <source src="audio/dino_score.ogg" type="audio/ogg">
+    </audio>
+    <audio id="audio_fall">
+      <source src="audio/dino_fall.mp3" type="audio/mpeg">
+      <source src="audio/dino_fall.ogg" type="audio/ogg">
+    </audio>
+    <audio id="audio_background" loop>
+      <source src="audio/background.mp3" type="audio/mpeg">
+      <source src="audio/background.ogg" type="audio/ogg">
+    </audio>
+
+    <div class="modal active">
+        <button id="start_game">Start game</button>
+    </div>
+
+
+    <script>
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+
+        //variables
+        let score;
+        let scoreText;
+        var highscore;
+        let highscoreText;
+        let player;
+        let gravity;
+        let obstacles = [];
+        let gameSpeed;
+        let keys = {};
+        const audio_jump = document.getElementById('audio_jump');
+        const audio_score = document.getElementById('audio_score');
+        const audio_fall = document.getElementById('audio_fall');
+        const audio_background = document.getElementById('audio_background');
+        const start_game = document.getElementById('start_game');
+
+        // Event Listeners
+        document.addEventListener('keydown', (event)=> {
+            keys[event.code] = true;
+            audio_background.play();
+            audio_background.volume=0.2;
+        });
+        document.addEventListener('keyup', (event)=> {
+            keys[event.code] = false;
+            if(event.code === 'Space' || event.code==='KeyW' || event.code==='ArrowUp') {
+                audio_jump.play();
+            }
+        })
+
+    </script>
+    <script src="figures/player/script.js"></script>
+    <script src="figures/obstacles/script.js"></script>
+    <script src="figures/text/script.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
