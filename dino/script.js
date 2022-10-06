@@ -76,6 +76,8 @@ const Update = ()=> {
             gameSpeed = 3;
             window.localStorage.setItem('highscore', highscore);
             alert(`Game over! Your score is ${score}\n\nType "OK" and Try again!`);
+            start_game.parentElement.classList.add('active');
+            window.location.reload();
         }
 
         obstacle.Update();
