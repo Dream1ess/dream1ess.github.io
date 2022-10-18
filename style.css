@@ -51,7 +51,7 @@ p {
 }
 
 .header {
-    background: #000 url('images/bg.jpg') no-repeat center;
+    background: #000 url('images/bg.webp') no-repeat center;
     background-size: cover;
     display: flex;
     align-items: center;
@@ -118,7 +118,7 @@ p {
     }
 }
 .resume__short-info {
-    background: #fff url('images/bg-line.png') no-repeat center;
+    background: #fff url('images/bg-line.webp') no-repeat center;
     background-size: cover;
     width: 30%;
     border: 2px solid var(--regular-color);
@@ -144,7 +144,7 @@ p {
 .resume__dashes_right,
 .resume__dashes_bottom,
 .resume__dashes_left {
-    background: url('images/dashes.png') no-repeat center;
+    background: url('images/dashes.webp') no-repeat center;
     background-size: cover;
 
     width: 30px;
