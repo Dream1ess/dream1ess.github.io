@@ -24,6 +24,10 @@ body, html {
     padding: 0;
 }
 
+p {
+  line-height: 1.5;
+}
+
 .container {
     max-width: 1170px;
     margin: 0 auto;
@@ -37,6 +41,13 @@ body, html {
 :root {
     --regular-color: #d1d1d1;
     --second-color: #fff;
+
+    --title-size-XL: 4.375em;  /*70px*/
+    --title-size-L: 3.125em;   /*50px*/
+    --subtitle-size-XL: 2.5em;   /*40px*/
+    --title-size: 1.6875em; /*27px*/
+    --subtitle-size: 1.3125em;  /*21px*/
+    --regular-size: 1em;   /*16px*/
 }
 
 .header {
@@ -49,24 +60,24 @@ body, html {
     padding: 120px 0;
 }
 .header__title {
-    font-size: 70px;
+    font-size: var(--title-size-XL);
     color: var(--second-color);
     margin-bottom: 50px;
 }
 @media screen and (max-width: 576px) {
     .header__title {
-        font-size: 50px;
+        font-size: var(--title-size-L);
     }
 }
 .header__profession {
-    font-size: 40px;
+    font-size: var(--subtitle-size-XL);
     color: var(--second-color);
     border: 3px solid var(--second-color);
     padding: 10px 20px;
 }
 @media screen and (max-width: 576px) {
     .header__profession {
-        font-size: 21px;
+        font-size: var(--subtitle-size);
     }
 }
 
@@ -184,13 +195,13 @@ body, html {
 }
 .resume__title {
     color: #000;
-    font-size: 27px;
+    font-size: var(--title-size);
     font-weight: 700;
     margin-bottom: 20px;
     text-transform: capitalize;
 }
 .resume__text {
-    font-size: 16px;
+    font-size: var(--regular-size);
     color: rgba(0,0,0,.6);
     margin-bottom: 20px;
 }
@@ -198,7 +209,7 @@ body, html {
     margin-bottom: 0;
 }
 .resume__subtitle {
-    font-size: 21px;
+    font-size: var(--subtitle-size);
     font-weight: 500;
     color: #000;
     margin-bottom: 20px;
@@ -237,11 +248,11 @@ body, html {
     margin-bottom: 10px;
 }
 .resume-skill__name {
-    font-size: 16px;
+    font-size: var(--regular-size);
     color: #000;
 }
 .resume-skill__percent {
-    font-size: 16px;
+    font-size: var(--regular-size);
     color: #8a8a8a;
 }
 .resume-skill__level {
