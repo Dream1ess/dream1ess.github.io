@@ -41,7 +41,7 @@ page.main = {
       navigator.serviceWorker.register('./sw.js')
       .then((reg) => {
         // регистрация сработала
-        console.log('Registration succeeded. Scope is ' + reg);
+        console.log('Registration succeeded. Scope is ', reg);
       }).catch((error) => {
         // регистрация прошла неудачно
         console.log('Registration failed with ' + error);
