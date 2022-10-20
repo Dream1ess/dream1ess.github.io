@@ -42,7 +42,7 @@ p {
     --regular-color: #000;
     --black-contrast: #000;
     --second-color: #fff;
-    --gray-color: #8a8a8a;
+    --gray-color: #474747;
 
     --border-color: #d1d1d1;
     --border-contrast: #8a8a8a;
@@ -53,6 +53,7 @@ p {
     --title-size: 1.6875em; /*27px*/
     --subtitle-size: 1.3125em;  /*21px*/
     --regular-size: 1em;   /*16px*/
+    --regular-size-XS: 0.75em;   /*12px*/
 }
 
 .header {
@@ -73,7 +74,7 @@ header .container {
 .header__logo {
     color: var(--second-color);
     font-weight: 700;
-    font-size: 25px;
+    font-size: var(--title-size);
     text-decoration: none;
 }
 header nav {
@@ -105,7 +106,7 @@ header button.active svg path {
     color: var(--second-color);
     text-decoration: none;
     font-weight: 400;
-    font-size: 18px;
+    font-size: var(--subtitle-size);
     border-bottom: 1px solid transparent;
 }
 .header__link.active {
@@ -360,15 +361,15 @@ footer .container {
 }
 .footer__logo {
     font-weight: 700;
-    font-size: 25px;
+    font-size: var(--title-size);
 }
 .footer__app {
     font-weight: 400;
-    font-size: 12px;
+    font-size: var(--regular-size-XS);
 }
 .footer__copyright {
     font-weight: 400;
-    font-size: 15px;
+    font-size: var(--regular-size);
 }
 @media screen and (max-width: 576px) {
     .footer__copyright {
@@ -388,7 +389,7 @@ footer .container {
 }
 .footer__made span {
     font-weight: 400;
-    font-size: 12px;
+    font-size: var(--regular-size-XS);
 }
 @media screen and (max-width: 576px) {
     .footer__made span {
@@ -397,7 +398,7 @@ footer .container {
 }
 .footer__author {
     font-weight: 700;
-    font-size: 25px;
+    font-size: var(--title-size);
 }
 
 .contrast.active {
