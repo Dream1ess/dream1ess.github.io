@@ -18,5 +18,6 @@
   "display": "standalone",
   "scope": "/",
   "id": "/",
-  "theme_color": "#ffffff"
+  "theme_color": "#ffffff",
+  "prefer_related_applications": false
 }
