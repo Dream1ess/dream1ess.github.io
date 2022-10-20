@@ -115,6 +115,11 @@ header button.active svg path {
 .header__link:hover {
 	border-bottom-color: var(--second-color);
 }
+@media screen and (max-width: 576px) {
+    .header__link.mobile {
+        display: none;
+    }
+}
 .header__title {
     font-size: var(--title-size-XL);
     color: var(--second-color);
