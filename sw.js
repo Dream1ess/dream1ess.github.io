@@ -11,7 +11,6 @@ self.addEventListener('install', (event) => {
         './favicon.ico',
         './favicon-16x16.png',
         './favicon-32x32.png',
-        './site.webmanifest',
         './images/avatar.webp',
         './images/bg.webp',
         './images/bg-line.webp',
@@ -20,7 +19,8 @@ self.addEventListener('install', (event) => {
         './images/light.svg',
         './images/star.svg',
         './images/twitter.svg',
-        './images/wright.svg'
+        './images/wright.svg',
+        './manifest.json'
       ]);
     })
   );
