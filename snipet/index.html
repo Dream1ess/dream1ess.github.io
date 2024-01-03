@@ -1,0 +1,519 @@
+<!-- TargetAds Web SDK -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Snipet</title>
+ <!-- <script type="text/javascript" src='https://cdn.targetads.io/websdk/index.js'></script> -->
+ <script type="text/javascript" src='./index.js'></script>
+<!-- <script type="text/javascript" src='./build/index.js'></script> -->
+
+  <style>
+    .block {
+      display: flex;
+      flex-direction: column;
+      padding: 40px 0;
+    }
+    .block__item {
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      width: 100%;
+      margin-bottom: 40px;
+    }
+    .btn {
+      width: max-content;
+      padding: 20px 30px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: none;
+      background: #000;
+      color: white;
+      margin: 0;
+      cursor: pointer;
+    }
+    .btn:hover {
+      opacity: .7;
+    }
+    .btn.red {
+      margin: 0 auto;
+      background: red;
+      color: black;
+    }
+    h1 {
+      text-align: center;
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+
+  <script>
+    window.targetAdsDataLayer = window.targetAdsDataLayer || {};
+    function _targetadsTag(){window.targetAdsDataLayer.data = arguments;}
+
+
+    // -----Standart correct-----
+    function allCorrectData() {
+      _targetadsTag('init', '1', true);
+
+      _targetadsTag('page_view', {'user': {'uid': '12323', 'segment': 'fdsfdsf'}, 'event_params': {'cd1': '1', 'cd2': '2'}})
+      // _targetadsTag('add_to_cart', { 'title': 'product_title', 'category': 'cat2', 'brand': 'brnd', 'variant': 'var1', 'price': 23434});
+      // _targetadsTag('purchase', {'id' : '2435', 'quantity': 4, 'amount': 50, 'items': [{'id': '213', 'title': 'product_title', 'category1': 'cat1', 'category2': 'cat2', 'brand': 'brnad1', 'variant': 'var1', 'quantity': 3, 'price': 23434.0},{'id': '223', 'title': 'product_title2', 'category1': 'cat1', 'category2': 'cat2', 'brand': 'brnad1', 'variant': 'var1','quantity': 1, 'price': 23434.5}]})
+    }
+    allCorrectData();
+
+
+
+    //dopolnenie
+    function clearStorage() {
+      localStorage.clear();
+    }
+
+    // ==========INIT TEST===========
+    function initCorrect() {
+      clearStorage();
+      _targetadsTag('init', '1', true);
+    }
+
+    function withoutInit () {
+      clearStorage();
+      _targetadsTag('page_view', {'user': {'uid': '12323', 'segment': 'fdsfdsf'}, 'event_params': {'cd1': '1', 'cd2': '2'}})
+      _targetadsTag('add_to_cart', {'category':'fqwfwe','price':1242});
+      _targetadsTag('purchase', {'id' : '2435', 'quantity': 4, 'amount': 50, 'items': [{'id': '213', 'title': 'product_title', 'category1': 'cat1', 'category2': 'cat2', 'brand': 'brnad1', 'variant': 'var1', 'quantity': 3, 'price': 23434.0},{'id': '223', 'title': 'product_title2', 'category1': 'cat1', 'category2': 'cat2', 'brand': 'brnad1', 'variant': 'var1','quantity': 1, 'price': 23434.5}]})
+    }
+
+    function incorrectInitId () {
+      clearStorage();
+      _targetadsTag('init', {'id': 12312}, true);
+    }
+
+    function withoutInitId (debug=false) {
+      clearStorage();
+      if(debug) {
+        _targetadsTag('init', undefined, true);
+        return;
+      }
+      _targetadsTag('init');
+    }
+
+    // ==========PAGE VIEW TEST===========
+    function pageViewCorrect() {
+      clearStorage();
+      _targetadsTag('init', '1', true);
+      _targetadsTag('page_view', {'user': {'uid': '12323', 'segment': 'fdsfdsf'}, 'event_params': {'cd1': '1', 'cd2': '2'}})
+    }
+
+    function pageViewWithoutParams() {
+      clearStorage();
+      _targetadsTag('init', '1', true);
+      _targetadsTag('page_view');
+    }
+    function pageViewWithUndefinedParams() {
+      clearStorage();
+      _targetadsTag('init', '1', true);
+      _targetadsTag('page_view', undefined);
+    }
+
+    function pageViewWithIncorrectParams() {
+      clearStorage();
+      _targetadsTag('init', '1', true);
+      _targetadsTag('page_view', 'some');
+      // _targetadsTag('page_view', ['some', {'key':'value'}]);
+      // _targetadsTag('page_view', {'user': {}, 'some':12});
+      // _targetadsTag('page_view', {'event_params': {'cd1': '1', 'cd2': '2'}});
+    }
+
+    function pageViewWithIncorrectParamsArray() {
+      clearStorage();
+      _targetadsTag('init', '1', true);
+      // _targetadsTag('page_view', ['some', {'key':'value'}]);
+      _targetadsTag('page_view', ['some', {'key':'value'}]);
+      // _targetadsTag('page_view', ['some']);
+      // _targetadsTag('page_view', {'user': {}, 'some':12});
+      // _targetadsTag('page_view', {'event_params': {'cd1': '1', 'cd2': '2'}});
+    }
+    function pageViewWithIncorrectParamsEmptyUser() {
+      clearStorage();
+      _targetadsTag('init', '1', true);
+      // _targetadsTag('page_view', ['some', {'key':'value'}]);
+      // _targetadsTag('page_view', ['some', {'key':'value'}]);
+      // _targetadsTag('page_view', ['some']);
+      _targetadsTag('page_view', {'user': {}, 'some':12});
+      // _targetadsTag('page_view', {'event_params': {'cd1': '1', 'cd2': '2'}});
+    }
+    function pageViewWithIncorrectParamsManyUserParams() {
+      clearStorage();
+      _targetadsTag('init', '1', true);
+      // _targetadsTag('page_view', ['some', {'key':'value'}]);
+      // _targetadsTag('page_view', ['some', {'key':'value'}]);
+      // _targetadsTag('page_view', ['some']);
+      // _targetadsTag('page_view', {'user': {}, 'some':12});
+      _targetadsTag('page_view', {'user': {'uid':'123','cd1': '1', 'cd2': '2', 'cd3': '3', 'cd4': '4', 'cd5': '5', 'cd6': '6'}});
+    }
+    function pageViewWithIncorrectParamsManyUserParamsWithoutUid() {
+      clearStorage();
+      _targetadsTag('init', '1', true);
+      // _targetadsTag('page_view', ['some', {'key':'value'}]);
+      // _targetadsTag('page_view', ['some', {'key':'value'}]);
+      // _targetadsTag('page_view', ['some']);
+      // _targetadsTag('page_view', {'user': {}, 'some':12});
+      _targetadsTag('page_view', {'user': {'cd1': '1', 'cd2': '2', 'cd3': '3', 'cd4': '4', 'cd5': '5', 'cd6': '6'}});
+    }
+    function pageViewWithIncorrectParamsManyEventParams() {
+      clearStorage();
+      _targetadsTag('init', '1', true);
+      // _targetadsTag('page_view', ['some', {'key':'value'}]);
+      // _targetadsTag('page_view', ['some', {'key':'value'}]);
+      // _targetadsTag('page_view', ['some']);
+      // _targetadsTag('page_view', {'user': {}, 'some':12});
+      _targetadsTag('page_view', {'event_params': {'cd1': '1', 'cd2': '2', 'cd3': '3', 'cd4': '4', 'cd5': '5', 'cd6': '6'}});
+    }
+    function pageViewWithIncorrectParamsEventParamsWithWrongTypes() {
+      clearStorage();
+      _targetadsTag('init', '1', true);
+      _targetadsTag('page_view', {'event_params': {'uid':'123','cd1': 1, 'cd2': false, 'cd3': true, 'cd4': {'name': 'value'}}});
+      _targetadsTag('page_view', {'event_params': {'uid':'1235', 'cd5': [1, '2', 'some'], 'cd6': 'string', 'cd7': null, 'cd8': undefined}});
+      _targetadsTag('page_view', {'garg': {'uid':'1235', 'cd5': [1, '2', 'some'], 'cd6': 'string', 'cd7': null, 'cd8': undefined}});
+    }
+
+
+    // ==========ADD TO CART TEST===========
+    function addToCartCorrect() {
+      clearStorage();
+      _targetadsTag('init', '1', true);
+      _targetadsTag('add_to_cart', { 'id': '1','title': 'product_title', 'category': 'cat2', 'brand': 'brnd', 'variant': 'var1', 'price': 23434});
+      // _targetadsTag('add_to_cart', { 'id': 1,'title': 123, 'category1': '12312', 'brand': NaN, 'variant': 'var1', 'price': 23434});
+    }
+
+    function addToCartWithoutParams() {
+      clearStorage();
+      _targetadsTag('init', '1', true);
+      _targetadsTag('add_to_cart');
+    }
+
+    function addToCartWithUndefinedParams() {
+      clearStorage();
+      _targetadsTag('init', '1', true);
+      _targetadsTag('add_to_cart', undefined);
+    }
+
+    function addToCartWithIncorrectParams() {
+      clearStorage();
+      _targetadsTag('init', '1', true);
+      _targetadsTag('add_to_cart', 'some');
+    }
+    function addToCartWithIncorrectParamsArray() {
+      clearStorage();
+      _targetadsTag('init', '1', true);
+      _targetadsTag('add_to_cart', ['some', {'key':'value'}]);
+    }
+    function addToCartWithIncorrectParamsBool() {
+      clearStorage();
+      _targetadsTag('init', '1', true);
+      _targetadsTag('add_to_cart', true);
+    }
+    function addToCartWithoutIdWithTitle() {
+      clearStorage();
+      _targetadsTag('init', '1', true);
+      _targetadsTag('add_to_cart', {'title': 'название продукта'});
+    }
+    function addToCartWithoutIdWithIncorrectTitle() {
+      clearStorage();
+      _targetadsTag('init', '1', true);
+      _targetadsTag('add_to_cart', {'title': {'name': 'value'}});
+    }
+    function addToCartWithoutTitleWithId() {
+      clearStorage();
+      _targetadsTag('init', '1', true);
+      _targetadsTag('add_to_cart', {'id': 1234});
+    }
+    function addToCartWithoutTitleWithIncorrectId() {
+      clearStorage();
+      _targetadsTag('init', '1', true);
+      _targetadsTag('add_to_cart', {'id': undefined});
+    }
+    function addToCartWithoutIdAndTitle() {
+      clearStorage();
+      _targetadsTag('init', '1', true);
+      _targetadsTag('add_to_cart', {'category': 'cat2', 'brand': 'brnd', 'variant': 'var1', 'price': 23434});
+    }
+
+    // ==========PURCHASE TEST===========
+    function purchaseCorrect() {
+      clearStorage();
+      _targetadsTag('init', '1', true);
+      _targetadsTag('purchase', {'id' : '2435', 'quantity': 4, 'amount': 50, 'items': [{'id': '213', 'title': 'product_title', 'category1': 'cat1', 'category2': 'cat2', 'brand': 'brnad1', 'variant': 'var1', 'quantity': 3, 'price': 23434.0},{'id': '2', 'title': 'product_title2', 'category1': 'cat4', 'category2': 'cat2', 'brand': 'brnad1', 'variant': 'var1','quantity': 142, 'price': 23434.5}]})
+    }
+
+    function purchaseInCorrectID() {
+      clearStorage();
+      _targetadsTag('init', '1', true);
+      _targetadsTag('purchase', {'id' : 2435, 'quantity': 4, 'amount': 50, 'items': [{'id': 213, 'title': 'product_title', 'category1': 'cat1', 'category2': 'cat2', 'brand': 'brnad1', 'variant': 'var1', 'quantity': 3, 'price': 23434.0},{'id': '223', 'title': 'product_title2', 'category1': 'cat1', 'category2': 'cat2', 'brand': 'brnad1', 'variant': 'var1','quantity': 1, 'price': 23434.5}]})
+    }
+
+    function purchaseWithoutParams() {
+      clearStorage();
+      _targetadsTag('init', '1', true);
+      _targetadsTag('purchase');
+    }
+
+    function purchaseWithUndefinedParams() {
+      clearStorage();
+      _targetadsTag('init', '1', true);
+      _targetadsTag('purchase', undefined);
+    }
+
+    function purchaseWithIncorrectParams() {
+      clearStorage();
+      _targetadsTag('init', '1', true);
+      _targetadsTag('purchase', 'some');
+    }
+    function purchaseWithIncorrectParamsArray() {
+      clearStorage();
+      _targetadsTag('init', '1', true);
+      _targetadsTag('purchase', ['some', {'key':'value'}]);
+    }
+    function purchaseWithIncorrectParamsBool() {
+      clearStorage();
+      _targetadsTag('init', '1', true);
+      _targetadsTag('purchase', true);
+    }
+    function purchaseWithOnlyIdOrder() {
+      clearStorage();
+      _targetadsTag('init', '1', true);
+      _targetadsTag('purchase', {'id': '12345', 'items':[{'id':'1'}]});
+    }
+    function purchaseWithoutItems() {
+      clearStorage();
+      _targetadsTag('init', '1', true);
+      _targetadsTag('purchase', {'id': '12345'});
+    }
+    function purchaseWithEmptyItems() {
+      clearStorage();
+      _targetadsTag('init', '1', true);
+      _targetadsTag('purchase', {'id': '12345', 'items':[]});
+    }
+    function purchaseWithIncorrectItems() {
+      clearStorage();
+      _targetadsTag('init', '1', true);
+      _targetadsTag('purchase', {'id': '12345', 'items':['id']});
+    }
+    function purchaseWithIncorrectItem() {
+      clearStorage();
+      _targetadsTag('init', '1', true);
+      _targetadsTag('purchase', {'id': '12345', 'items':[{'id': 1},'id']});
+    }
+
+
+//     _targetadsTag('purchase', {'id' : '123421', 'quantity': 6, 'amount': 'сумма покупки',
+// 'items': [{
+//   'id': <id товара>,
+// 'title': '<название продукта>',
+// 'category1': '<категория 1 продукта>',
+// 'category2': '<категория 2 продукта>',
+// 'brand': '<бренд товара>',
+// 'variant': '<вариант товара>',
+// 'quantity': <количество товара>,
+// 'price': <стоимость товара>}])
+
+    // ==========EVENT TEST===========
+    function eventCorrect() {
+      clearStorage();
+      _targetadsTag('init', '1', true);
+      _targetadsTag('event', {"event_type":"type","event_category":"category","event_name":"name","event_target_price":123123,"event_value":12312});
+    }
+    function eventWithoutParams() {
+      clearStorage();
+      _targetadsTag('init', '1', true);
+      _targetadsTag('event');
+    }
+    function eventWithUndefinedParams() {
+      clearStorage();
+      _targetadsTag('init', '1', true);
+      _targetadsTag('event', undefined);
+    }
+
+    function eventWithIncorrectParams() {
+      clearStorage();
+      _targetadsTag('init', '1', true);
+      // _targetadsTag('event', {"event_category":"category","event_name":"name"});
+      // _targetadsTag('event', ['some', {'key':'value'}]);
+      // _targetadsTag('event', 'some');
+      _targetadsTag('event', {'key':"value"});
+    }
+    function eventWithIncorrectParamsManyEventParams() {
+      clearStorage();
+      _targetadsTag('init', '1', true);
+      // _targetadsTag('page_view', ['some', {'key':'value'}]);
+      // _targetadsTag('page_view', ['some', {'key':'value'}]);
+      // _targetadsTag('page_view', ['some']);
+      // _targetadsTag('page_view', {'user': {}, 'some':12});
+      _targetadsTag('event', {
+        'event_type': 'тип события', 'event_category': 'категория события', 'event_name': 'название события', 'event_value': 43,
+        'event_params': {'cd1': '1', 'cd2': '2', 'cd3': '3', 'cd4': '4', 'cd5': '5', 'cd6': '6'}
+      });
+    }
+    function eventWithIncorrectParamsEventParamsWithWrongTypes() {
+      clearStorage();
+      _targetadsTag('init', '1', true);
+      _targetadsTag('event', {
+        'event_type': 'тип события', 'event_category': 'категория события', 'event_name': 'название события', 'event_value': 43,
+        'event_params': {'cd1': 1, 'cd2': false, 'cd3': true, 'cd4': {'name': 'value'}}
+      });
+      _targetadsTag('event', {
+        'event_type': 'тип события', 'event_category': 'категория события', 'event_name': 'название события', 'event_value': 43.1232,
+        'event_params': {'cd5': [1, '2', 'some'], 'cd6': 'string', 'cd7': null, 'cd8': undefined}
+      });
+    }
+    function eventWithWrongRequiredParamsTypes() {
+      clearStorage();
+      _targetadsTag('init', '1', true);
+      // _targetadsTag('page_view', ['some', {'key':'value'}]);
+      // _targetadsTag('page_view', ['some', {'key':'value'}]);
+      // _targetadsTag('page_view', ['some']);
+      // _targetadsTag('page_view', {'user': {}, 'some':12});
+      _targetadsTag('event', {
+        'event_type': 123, 'event_category': {'name': 'value'}, 'event_name': true
+      });
+    }
+    function eventCheckValueWithDot() {
+      clearStorage();
+      _targetadsTag('init', '1', true);
+      // _targetadsTag('page_view', ['some', {'key':'value'}]);
+      // _targetadsTag('page_view', ['some', {'key':'value'}]);
+      // _targetadsTag('page_view', ['some']);
+      // _targetadsTag('page_view', {'user': {}, 'some':12});
+      _targetadsTag('event', {
+        'event_type': 'тип события', 'event_category': 'категория события', 'event_name': 'название события', 'event_value': 1.34
+      });
+    }
+    function eventCheckValueWithComma() {
+      clearStorage();
+      _targetadsTag('init', '1', true);
+      // _targetadsTag('page_view', ['some', {'key':'value'}]);
+      // _targetadsTag('page_view', ['some', {'key':'value'}]);
+      // _targetadsTag('page_view', ['some']);
+      // _targetadsTag('page_view', {'user': {}, 'some':12});
+      _targetadsTag('event', {
+        'event_type': 'тип события', 'event_category': 'категория события', 'event_name': 'название события', 'event_value': '1,34'
+      });
+    }
+
+    function otherEvent() {
+      clearStorage();
+      _targetadsTag('init', '1', true);
+      // _targetadsTag('page_view', ['some', {'key':'value'}]);
+      // _targetadsTag('page_view', ['some', {'key':'value'}]);
+      // _targetadsTag('page_view', ['some']);
+      // _targetadsTag('page_view', {'user': {}, 'some':12});
+      _targetadsTag('orhetfas', {
+        'event_type': 'тип события', 'event_category': 'категория события', 'event_name': 'название события', 'event_value': '1,34'
+      });
+    }
+
+  </script>
+
+<!--  <button >Hey</button>-->
+
+
+  <h1>Before each test reload page 2 times</h1>
+  <button class="btn red" onclick="clearStorage()">Clear Storage</button>
+
+  <div class="block">
+    <h3>Init</h3>
+    <div class="block__item">
+      <button class="btn" onclick="initCorrect()">Init correct</button>
+      <button class="btn" onclick="withoutInit()">without Init</button>
+      <button class="btn" onclick="incorrectInitId()">incorrect Init Id</button>
+      <button class="btn" onclick="withoutInitId()">without Init Id</button>
+    </div>
+    <h3>page View</h3>
+    <div class="block__item">
+      <button class="btn" onclick="pageViewCorrect()">pageView correct</button>
+      <button class="btn" onclick="pageViewWithoutParams()">pageView Without Params</button>
+      <button class="btn" onclick="pageViewWithUndefinedParams()">pageView With Undefined Params</button>
+      <button class="btn" onclick="pageViewWithIncorrectParams()">pageView With Incorrect Params</button>
+      <button class="btn" onclick="pageViewWithIncorrectParamsArray()">pageView With Incorrect Params Array</button>
+      <button class="btn" onclick="pageViewWithIncorrectParamsEmptyUser()">pageView With Incorrect Params EmptyUser</button>
+      <button class="btn" onclick="pageViewWithIncorrectParamsManyUserParams()">pageView With Incorrect Params Many User Params</button>
+      <button class="btn" onclick="pageViewWithIncorrectParamsManyUserParamsWithoutUid()">pageView With Incorrect Params Many User Params without uid</button>
+      <button class="btn" onclick="pageViewWithIncorrectParamsManyEventParams()">pageView With Incorrect Params Many Event Params</button>
+      <button class="btn" onclick="pageViewWithIncorrectParamsEventParamsWithWrongTypes()">pageView With Incorrect Params Event Params with wrong types</button>
+    </div>
+    <h3>add To Cart</h3>
+    <div class="block__item">
+      <button class="btn" onclick="addToCartCorrect()">addToCart correct</button>
+      <button class="btn" onclick="addToCartWithoutParams()">addToCart Without Params</button>
+      <button class="btn" onclick="addToCartWithUndefinedParams()">addToCart With Undefined Params</button>
+      <button class="btn" onclick="addToCartWithIncorrectParams()">addToCart With Incorrect Params</button>
+      <button class="btn" onclick="addToCartWithIncorrectParamsArray()">addToCart With Incorrect Params Array</button>
+      <button class="btn" onclick="addToCartWithIncorrectParamsBool()">addToCart With Incorrect Params Bool</button>
+      <button class="btn" onclick="addToCartWithoutIdWithTitle()">addToCartWithoutIdWithTitle</button>
+      <button class="btn" onclick="addToCartWithoutIdWithIncorrectTitle()">addToCartWithoutIdWithIncorrectTitle</button>
+      <button class="btn" onclick="addToCartWithoutTitleWithId()">addToCartWithoutTitleWithId</button>
+      <button class="btn" onclick="addToCartWithoutTitleWithIncorrectId()">addToCartWithoutTitleWithIncorrectId</button>
+      <button class="btn" onclick="addToCartWithoutIdAndTitle()">addToCartWithoutIdAndTitle</button>
+      <a class="btn" id="checkAddToCartWithRedirect" href="index_example.html">Check add_to_cart when redirect</a>
+      <a class="btn" id="checkAddToCartNoRedirect" href="?faefaf=faef&gweg=gwrg">Check add_to_cart without redirect</a>
+    </div>
+    <h3>Purchase</h3>
+    <div class="block__item">
+      <button class="btn" onclick="purchaseCorrect()">Purchase correct</button>
+      <button class="btn" onclick="purchaseInCorrectID()">Purchase correct</button>
+      <button class="btn" onclick="purchaseWithoutParams()">purchase Without Params</button>
+      <button class="btn" onclick="purchaseWithUndefinedParams()">purchase With Undefined Params</button>
+      <button class="btn" onclick="purchaseWithIncorrectParams()">purchase With Incorrect Params</button>
+      <button class="btn" onclick="purchaseWithIncorrectParamsArray()">purchaseWithIncorrectParamsArray</button>
+      <button class="btn" onclick="purchaseWithIncorrectParamsBool()">purchaseWithIncorrectParamsBool</button>
+      <button class="btn" onclick="purchaseWithOnlyIdOrder()">purchaseWithOnlyIdOrder</button>
+      <button class="btn" onclick="purchaseWithoutItems()">purchaseWithoutItems</button>
+      <button class="btn" onclick="purchaseWithEmptyItems()">purchaseWithEmptyItems</button>
+      <button class="btn" onclick="purchaseWithIncorrectItems()">purchaseWithIncorrectItems</button>
+      <button class="btn" onclick="purchaseWithIncorrectItem()">purchaseWithIncorrectItem</button>
+      <a class="btn" id="checkPurchaseWithRedirect" href="index_example.html">Check Purchase when redirect</a>
+      <a class="btn" id="checkPurchaseNoRedirect" href="#" >Check Purchase without redirect</a>
+    </div>
+    <h3>Event</h3>
+    <div class="block__item">
+      <button class="btn" onclick="eventCorrect()">Event correct</button>
+      <button class="btn" onclick="eventWithoutParams()">Event Without Params</button>
+      <button class="btn" onclick="eventWithUndefinedParams()">Event With Undefined Params</button>
+      <button class="btn" onclick="eventWithIncorrectParams()">Event With Incorrect Params</button>
+      <button class="btn" onclick="eventWithIncorrectParamsManyEventParams()">Event With Incorrect Params many event params</button>
+      <button class="btn" onclick="eventWithIncorrectParamsEventParamsWithWrongTypes()">Event With Incorrect Params wrong types</button>
+      <button class="btn" onclick="eventWithWrongRequiredParamsTypes()">eventWithWrongRequiredParamsTypes</button>
+      <button class="btn" onclick="eventCheckValueWithDot()">eventCheckValueWithDot</button>
+      <button class="btn" onclick="eventCheckValueWithComma()">eventCheckValueWithComma</button>
+      <button class="btn" onclick="otherEvent()">otherEvent</button>
+    </div>
+  </div>
+
+
+
+  <script>
+    const checkAddToCartWithRedirect = document.getElementById('checkAddToCartWithRedirect');
+    const checkAddToCartNoRedirect = document.getElementById('checkAddToCartNoRedirect');
+    const checkPurchaseWithRedirect = document.getElementById('checkPurchaseWithRedirect');
+    const checkPurchaseNoRedirect = document.getElementById('checkPurchaseNoRedirect');
+
+    checkAddToCartWithRedirect.addEventListener('click', ()=> {
+      _targetadsTag('add_to_cart', { 'title': 'with_redirect'});
+    })
+    checkAddToCartNoRedirect.addEventListener('click', ()=> {
+      _targetadsTag('add_to_cart', { 'title': 'without_redirect'});
+    })
+    checkPurchaseWithRedirect.addEventListener('click', ()=> {
+      _targetadsTag('purchase', { 'title': 'with_redirect'});
+    })
+    checkPurchaseNoRedirect.addEventListener('click', ()=> {
+      _targetadsTag('purchase', {'id' : '2435', 'title': 'without_redirect', 'quantity': 4, 'amount': 50, 'items': [{'id': '213', 'title': 'product_title', 'category1': 'cat1', 'category2': 'cat2', 'brand': 'brnad1', 'variant': 'var1', 'quantity': 3, 'price': 23434.0},{'id': '223', 'title': 'product_title2', 'category1': 'cat1', 'category2': 'cat2', 'brand': 'brnad1', 'variant': 'var1','quantity': 1, 'price': 23434.5}]});
+    })
+  </script>
+
+</body>
+</html>
+
