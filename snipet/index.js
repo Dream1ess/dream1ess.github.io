@@ -32,7 +32,6 @@ TargetAds.prototype.req = async function (query, data) {
     TargetAdsQueues.dequeue(queueItem);
     fetch(`${this.host}/web/collect?${query}`, {
         method: 'POST',
-        mode: 'no-cors',
         cache: 'no-cache',
         credentials: 'include',
         headers: {
